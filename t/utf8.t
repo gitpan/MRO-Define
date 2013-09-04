@@ -1,6 +1,7 @@
 use strict;
 use warnings;
-use Test::More tests => 3;
+use utf8;
+use Test::More 0.89;
 
 {
     package ProtoMRO;
@@ -12,7 +13,7 @@ use Test::More tests => 3;
     { package Dummy }
 
     BEGIN {
-        MRO::Define::register_mro(q/proto/, sub {
+        MRO::Define::register_mro('ネ', sub {
             return [qw/Dummy ProtoMRO/];
         });
     }
@@ -37,10 +38,13 @@ use Test::More tests => 3;
 
 {
     package Bar;
-    use mro 'proto';
+    use Devel::Peek;
+    use mro 'ネ';
 }
 
 can_ok('Bar', 'moo');
 is(Bar->moo(1, 2, 3), 'invoking moo on Bar with 1 2 3');
 my $moo = 'moo';
 is(Bar->$moo(1, 2, 3), 'invoking moo on Bar with 1 2 3');
+
+done_testing;

@@ -1,40 +1,13 @@
-NAME
-    MRO::Define - Define your own method resolution order
 
-SYNOPSIS
-        # define your mro
-        use mro;
-        use MRO::Define;
-        MRO::Define::register_mro(your_mro => sub { ... });
 
-        # use your mro somewhere else
-        use mro 'your_mro';
+This archive contains the distribution MRO-Define,
+version 0.02:
 
-DESCRIPTION
-    With recent versions of perl it is possible to change the method
-    resolution order (mro) of a given class either by using "use mro" as
-    shown in the synopsis, or by using the "mro::set_mro".
+  Define your own method resolution order
 
-    Perl itself comes with two MROs by default. The traditional Perl default
-    MRO (depth first search, DFS) and C3 MRO.
+This software is copyright (c) 2013 by Florian Ragwitz.
 
-    This module allows you to define custom method resolution orders in
-    addition to those perl already has.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
-FUNCTIONS
-  register_mro ($name, $resolve_callback)
-    This function allows registering of custom method resolution orders.
-    Your MRO needs to have a $name as well as a $resolve_callback that will
-    get invoked when a method trying to be resolved using your MRO. The
-    resolve callback is expected to return an array reference of package
-    names that will be used for the method lookup.
-
-AUTHOR
-    Florian Ragwitz <rafl@debian.org>
-
-COPYRIGHT AND LICENSE
-    This software is copyright (c) 2009 by Florian Ragwitz.
-
-    This is free software; you can redistribute it and/or modify it under
-    the same terms as perl itself.
 

@@ -2,16 +2,30 @@ use strict;
 use warnings;
 
 package MRO::Define;
+BEGIN {
+  $MRO::Define::AUTHORITY = 'cpan:FLORA';
+}
+{
+  $MRO::Define::VERSION = '0.02';
+}
+# ABSTRACT: Define your own method resolution order
 
-our $VERSION = '0.01';
+require 5.010001;
 
 use XSLoader;
 
-XSLoader::load(__PACKAGE__, $VERSION);
+XSLoader::load(
+    __PACKAGE__,
+    $MRO::Define::{VERSION} ? ${ $MRO::Define::{VERSION} } : (),
+);
 
 1;
 
 __END__
+
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -51,13 +65,13 @@ used for the method lookup.
 
 =head1 AUTHOR
 
-Florian Ragwitz E<lt>rafl@debian.orgE<gt>
+Florian Ragwitz <rafl@debian.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Florian Ragwitz.
+This software is copyright (c) 2013 by Florian Ragwitz.
 
-This is free software; you can redistribute it and/or modify it under the same
-terms as perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
